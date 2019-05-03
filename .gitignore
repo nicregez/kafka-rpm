@@ -1,1 +1,4 @@
-*.rpm
+/RPMS/
+/KEYS
+/kafka_*.tar.gz
+/kafka_*.tar.gz.asc
