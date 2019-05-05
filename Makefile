@@ -1,6 +1,6 @@
 .PHONY:	rpm clean
 
-KAFKA_VERSION ?= 0.11.0.2
+KAFKA_VERSION ?= 2.2.0
 SCALA_VERSION ?= 2.12
 VERSION = $(shell echo $(KAFKA_VERSION) | sed "s/-/_/")
 BUILD_NUMBER ?= 1
@@ -10,8 +10,10 @@ TARBALL_URL = https://archive.apache.org/dist/kafka/${KAFKA_VERSION}/${TARBALL}
 TOPDIR = /tmp/kafka-rpm
 PWD = $(shell pwd)
 
-rpm:
+wget:
 	@wget "${TARBALL_URL}" -O ${TARBALL}
+
+rpm:
 	@rpmbuild -v -bb \
 			--define "version $(VERSION)" \
 			--define "kafka_version $(KAFKA_VERSION)" \
@@ -19,12 +21,12 @@ rpm:
 			--define "tarball $(TARBALL)" \
 			--define "tarball_name $(TARBALL_NAME)" \
 			--define "_sourcedir $(PWD)" \
-			--define "_rpmdir $(PWD)" \
+			--define "_rpmdir $(PWD)/RPMS" \
 			--define "_topdir $(TOPDIR)" \
 			kafka.spec
 
 clean:
-	@rm -rf $(TOPDIR) x86_64
+	@rm -rf $(TOPDIR) $(PWD)/RPMS
 	@rm -f $(TARBALL)
 
 $(TARBALL):
