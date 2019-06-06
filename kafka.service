@@ -10,6 +10,7 @@ Group=kafka
 EnvironmentFile=/etc/sysconfig/kafka
 ExecStart=/opt/kafka/bin/kafka-server-start.sh /etc/kafka/server.properties
 ExecStop=/opt/kafka/bin/kafka-server-stop.sh
+LimitNOFILE=131072
 TimeoutStartSec=0
 Restart=on-abnormal
 SyslogIdentifier=kafka
