@@ -39,7 +39,7 @@ If you want to install locally
 
 If you install from an RPM repository
 
-    yum install -y zookeeper
+    yum install -y kafka
 
 Configure
 ---------
