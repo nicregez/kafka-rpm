@@ -65,6 +65,12 @@ configs
 -   /etc/kafka/log4j.properties
 -   /etc/sysconfig/kafka
 
+certificates and keystores (use symlinks)
+
+-   /etc/pki/tls/private/kafka-server-keystore.jks
+-   /etc/pki/tls/certs/kafka-server-truststore.jks
+-   /etc/pki/tls/certs/kafka-client-truststore.jks
+
 systemd
 
 -   /usr/lib/systemd/system/kafka.service
