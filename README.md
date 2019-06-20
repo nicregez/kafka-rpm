@@ -81,7 +81,7 @@ data
 
 logs
 
--   /var/log/kafka
+-   /var/log/kafka/log
 
 tools
 

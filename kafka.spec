@@ -3,7 +3,7 @@
 %define name kafka
 %define _prefix /opt
 %define _conf_dir %{_sysconfdir}/kafka
-%define _log_dir %{_var}/log/kafka
+%define _log_dir %{_var}/log/kafka/log
 %define _data_dir %{_var}/lib/kafka/data
 
 Summary: Apache Kafka.
@@ -35,6 +35,9 @@ Apache Kafka.
 %setup -n %{tarball_name}
 
 %build
+rm -f config/{connect-*.properties,consumer.properties,producer.properties}
+rm -f config/{log4j.properties,server.properties,zookeeper.properties,trogdor.conf}
+rm -f libs/{kafka_*-javadoc.jar,kafka_*-scaladoc.jar,kafka_*-sources.jar}
 
 %install
 mkdir -p $RPM_BUILD_ROOT%{_prefix}/kafka
@@ -44,7 +47,7 @@ mkdir -p $RPM_BUILD_ROOT%{_prefix}/kafka/libs
 mkdir -p $RPM_BUILD_ROOT%{_log_dir}
 mkdir -p $RPM_BUILD_ROOT%{_data_dir}
 mkdir -p $RPM_BUILD_ROOT%{_unitdir}/kafka.service.d
-mkdir -p $RPM_BUILD_ROOT%{_conf_dir}/
+mkdir -p $RPM_BUILD_ROOT%{_conf_dir}
 install -p -D -m 755 bin/kafka-*.sh $RPM_BUILD_ROOT%{_prefix}/kafka/bin
 install -p -D -m 644 config/tools-log4j.properties $RPM_BUILD_ROOT%{_prefix}/kafka/config
 install -p -D -m 644 libs/*.jar $RPM_BUILD_ROOT%{_prefix}/kafka/libs
@@ -74,7 +77,7 @@ fi
 %files
 %defattr(-,root,root)
 %{_unitdir}/kafka.service
-%attr(-,kafka,kafka) %{_prefix}/kafka
+%attr(-,root,root) %{_prefix}/kafka
 %config(noreplace) %{_conf_dir}/*
 %config(noreplace) %{_sysconfdir}/sysconfig/kafka
 %attr(0755,kafka,kafka) %dir %{_log_dir}
