@@ -7,11 +7,16 @@ BUILD_NUMBER ?= 1
 TARBALL_NAME = kafka_$(SCALA_VERSION)-$(KAFKA_VERSION)
 TARBALL = $(TARBALL_NAME).tgz
 TARBALL_URL = https://archive.apache.org/dist/kafka/${KAFKA_VERSION}/${TARBALL}
+JOLOKIA = jolokia-jvm-1.6.2-agent.jar
+JOLOKIA_URL = http://search.maven.org/remotecontent?filepath=org/jolokia/jolokia-jvm/1.6.2/${JOLOKIA}
 TOPDIR = /tmp/kafka-rpm
 PWD = $(shell pwd)
 
 wget:
 	@wget "${TARBALL_URL}" -O ${TARBALL}
+
+jolokia:
+	@wget "${JOLOKIA_URL}" -O ${JOLOKIA}
 
 rpm:
 	@rpmbuild -v -bb \

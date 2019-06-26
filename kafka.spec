@@ -6,17 +6,18 @@
 %define _log_dir %{_var}/log/kafka/log
 %define _data_dir %{_var}/lib/kafka/data
 
-Summary: Apache Kafka.
 Name: kafka
 Version: %{version}
 Release: %{build_number}
+Summary: Apache Kafka.
 License: Apache License, Version 2.0
 Group: Applications
 Source0: http://apache.mirrors.spacedump.net/kafka/%{kafka_version}/%{tarball}
-Source1: kafka.service
-Source2: server.properties
-Source3: log4j.properties
-Source4: kafka.sysconfig
+Source1: http://search.maven.org/remotecontent?filepath=org/jolokia/jolokia-jvm/1.6.2/jolokia-jvm-1.6.2-agent.jar
+Source2: kafka.service
+Source3: server.properties
+Source4: log4j.properties
+Source5: kafka.sysconfig
 URL: http://kafka.apache.org/
 BuildRoot: %{_tmppath}/%{name}-%{kafka_version}-root
 Prefix: %{_prefix}
@@ -51,10 +52,11 @@ mkdir -p $RPM_BUILD_ROOT%{_conf_dir}
 install -p -D -m 755 bin/kafka-*.sh $RPM_BUILD_ROOT%{_prefix}/kafka/bin
 install -p -D -m 644 config/tools-log4j.properties $RPM_BUILD_ROOT%{_prefix}/kafka/config
 install -p -D -m 644 libs/*.jar $RPM_BUILD_ROOT%{_prefix}/kafka/libs
-install -p -D -m 644 %{S:1} $RPM_BUILD_ROOT%{_unitdir}/
-install -p -D -m 644 %{S:2} $RPM_BUILD_ROOT%{_conf_dir}/
+install -p -D -m 644 %{S:1} $RPM_BUILD_ROOT%{_prefix}/kafka/libs
+install -p -D -m 644 %{S:2} $RPM_BUILD_ROOT%{_unitdir}/
 install -p -D -m 644 %{S:3} $RPM_BUILD_ROOT%{_conf_dir}/
-install -p -D -m 644 %{S:4} $RPM_BUILD_ROOT%{_sysconfdir}/sysconfig/kafka
+install -p -D -m 644 %{S:4} $RPM_BUILD_ROOT%{_conf_dir}/
+install -p -D -m 644 %{S:5} $RPM_BUILD_ROOT%{_sysconfdir}/sysconfig/kafka
 
 %clean
 rm -rf $RPM_BUILD_ROOT
