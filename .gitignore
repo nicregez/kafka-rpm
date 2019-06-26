@@ -1,3 +1,4 @@
 /RPMS/
 /KEYS
 /kafka_*.tgz
+/jolokia-jvm-*-agent.jar
