@@ -4,6 +4,7 @@ kafka-rpm
 A set of scripts to package kafka into an rpm.
 Requires CentOS/RedHat 7.
 Uses systemctl to register/manage service.
+Configures Jolokia as Java Agent.
 
 Setup
 -----
@@ -14,6 +15,7 @@ Product Documentation
 ---------------------
 
 https://kafka.apache.org/documentation/
+https://jolokia.org/documentation.html
 
 Build
 -----
@@ -26,6 +28,7 @@ Check https://archive.apache.org/dist/kafka/ for supported versions.
     export SCALA_VERSION=2.12
     export BUILD_NUMBER=3
     make wget
+    make jolokia
     make rpm
 
 Resulting RPM will be avaliable at $(shell pwd)/RPMS/x86_64

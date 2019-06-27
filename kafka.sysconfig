@@ -1,5 +1,5 @@
 KAFKA_HEAP_OPTS=-Xms4g -Xmx4g
-KAFKA_LOG4J_OPTS=-Dkafka.logs.dir=/var/log/kafka/log -Dlog4j.configuration=file:/etc/kafka/log4j.properties
+KAFKA_LOG4J_OPTS=-Dlog4j.configuration=file:/etc/kafka/log4j.properties
 LOG_DIR=/var/log/kafka/log
 KAFKA_JMX_OPTS=-Dcom.sun.management.jmxremote.local.only=true -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.host=localhost -Dcom.sun.management.jmxremote.port=9999 -Dcom.sun.management.jmxremote.rmi.port=9999
 KAFKA_OPTS=-javaagent:/opt/kafka/libs/jolokia-jvm-1.6.2-agent.jar=host=localhost,port=8778
