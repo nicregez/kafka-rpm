@@ -26,7 +26,7 @@ Check https://archive.apache.org/dist/kafka/ for supported versions.
     cd kafka-rpm
     export KAFKA_VERSION=2.2.0
     export SCALA_VERSION=2.12
-    export BUILD_NUMBER=3
+    export BUILD_NUMBER=4
     make wget
     make jolokia
     make rpm
